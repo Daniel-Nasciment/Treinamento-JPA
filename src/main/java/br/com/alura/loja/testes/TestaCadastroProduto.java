@@ -13,7 +13,8 @@ public class TestaCadastroProduto {
 
 	public static void main(String[] args) {
 
-		Produto iPhone = new Produto("iPhone XS", "64GB preto", new BigDecimal("1500"), Categoria.CELULARES  );
+		// git rm -r --cached -> Comando para remover arquivos ja no GITHUB para o gitignore funcionar
+		Produto iPhone = new Produto("iPhone XS", "64GB preto", new BigDecimal("1400"), Categoria.CELULARES  );
 
 
 		EntityManager em = JPAutil.getEntityManager();
