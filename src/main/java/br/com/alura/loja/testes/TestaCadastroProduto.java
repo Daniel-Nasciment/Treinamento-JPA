@@ -4,25 +4,28 @@ import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
 
+import br.com.alura.loja.dao.CategoriaDAO;
 import br.com.alura.loja.dao.ProdutoDAO;
+import br.com.alura.loja.entity.Categoria;
 import br.com.alura.loja.entity.Produto;
-import br.com.alura.loja.enums.Categoria;
 import br.com.alura.loja.util.JPAutil;
 
 public class TestaCadastroProduto {
 
 	public static void main(String[] args) {
 
-		// git rm -r --cached -> Comando para remover arquivos ja no GITHUB para o gitignore funcionar
-		Produto iPhone = new Produto("iPhone XS", "64GB preto", new BigDecimal("1400"), Categoria.CELULARES  );
+		Categoria celulares = new Categoria("Celulares");
+		Produto iPhone = new Produto("iPhone XS", "64GB preto", new BigDecimal("1400"), celulares);
 
 
 		EntityManager em = JPAutil.getEntityManager();
 
-		ProdutoDAO dao = new ProdutoDAO(em);
+		ProdutoDAO prodDao = new ProdutoDAO(em);
+		CategoriaDAO catDao = new CategoriaDAO(em);
 		em.getTransaction().begin();
 
-		dao.salvar(iPhone);
+		catDao.salvar(celulares);
+		prodDao.salvar(iPhone);
 
 		em.getTransaction().commit();
 		em.close();
