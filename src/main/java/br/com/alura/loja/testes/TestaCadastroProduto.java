@@ -19,6 +19,7 @@ public class TestaCadastroProduto {
 		// PERSIST -> MANAGED - A JPA ESTÁ OBSERVANDO AQUELA ENTIDADE
 		// CLOSE -> DETACHED - JPA IGONORA
 		// PARA RETORNAR DO DETACHED É NECESSÁRIO USAR O EntityManager.merge() PORÉM ELE RETORNA UMA REFERENCIA QUE NO CASO VAI ESTAR NO MANAGED
+		// REMOVE -> REMOVED
 		
 		Categoria celulares = new Categoria("Celulares");
 		Produto iPhone = new Produto("iPhone XS", "64GB preto", new BigDecimal("1400"), celulares);
