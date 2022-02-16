@@ -29,6 +29,7 @@ public class Produto {
 	@ManyToOne
 	private Categoria categoria;
 
+	// CONSTRUTOR PADRÃO É NECESSÁRIO PARA USO DA JPA
 	@Deprecated
 	public Produto() {
 

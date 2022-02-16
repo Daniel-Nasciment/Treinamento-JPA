@@ -15,6 +15,7 @@ public class Categoria {
 	private Long id;
 	private String nome;
 
+	// CONSTRUTOR PADRÃO É NECESSÁRIO PARA USO DA JPA
 	@Deprecated
 	public Categoria() {
 
