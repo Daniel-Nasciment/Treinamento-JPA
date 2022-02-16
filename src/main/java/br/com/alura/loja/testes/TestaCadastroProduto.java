@@ -27,6 +27,10 @@ public class TestaCadastroProduto {
 		
 		List<Produto> produtos = prodDao.buscaPorNome("iPhone XS");
 		
+		BigDecimal preco = prodDao.buscaPrecoPeloNome("iPhone XS");
+		
+		System.out.println(preco);
+		
 		produtos.forEach(p -> System.out.println(p));
 		
 
