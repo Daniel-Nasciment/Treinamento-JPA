@@ -14,6 +14,11 @@ public class TestaCadastroProduto {
 
 	public static void main(String[] args) {
 
+		// ESTADOS DA ENTIDADE
+		// NEW -> TRANSIENT - AINDA NÃO FOI PERSISTIDO E A JPA DESCONHECE ESSA ENTIDADE
+		// PERSIST -> MANAGED - A JPA ESTÁ OBSERVANDO AQUELA ENTIDADE
+		// CLOSE -> DETACHED - JPA IGONORA
+		
 		Categoria celulares = new Categoria("Celulares");
 		Produto iPhone = new Produto("iPhone XS", "64GB preto", new BigDecimal("1400"), celulares);
 
@@ -27,6 +32,7 @@ public class TestaCadastroProduto {
 		catDao.salvar(celulares);
 		prodDao.salvar(iPhone);
 
+		// EXISTE O MÉTODO FLUSH QUE SINCRONIZA A ENTIDADE COM A BASE DE DADOS SEM COMMITAR A TRANSAÇÃO
 		em.getTransaction().commit();
 		em.close();
 
