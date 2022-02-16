@@ -21,7 +21,11 @@ public class TestaCadastroProduto {
 		
 		//Produto produto = prodDao.buscaPorId(3l);
 		
-		List<Produto> produtos = prodDao.buscaTodos();
+		//List<Produto> produtos = prodDao.buscaTodos();
+		
+		//List<Produto> produtos = prodDao.buscaPorNomeCategoria("CELULARES");
+		
+		List<Produto> produtos = prodDao.buscaPorNome("iPhone XS");
 		
 		produtos.forEach(p -> System.out.println(p));
 		
