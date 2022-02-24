@@ -2,13 +2,15 @@ package br.com.alura.loja.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +28,9 @@ public class Pedido {
 
 	private BigDecimal valorTotal;
 
+	@OneToMany(mappedBy = "pedido")
+	private List<ItemPedido> itens = new ArrayList<ItemPedido>();
+	
 	@Deprecated
 	public Pedido() {
 		
@@ -36,6 +41,12 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 
+	// LEMBRAR SEMPRE NO RELACIONAMENTO BIDIRECIONAL DE FAZER AS ENTIDADES SE CONHECEREM
+	public void adicionaItem(ItemPedido item) {
+		item.setPedido(this);
+		this.itens.add(item);
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -53,11 +64,11 @@ public class Pedido {
 	}
 
 	public BigDecimal getPreco() {
-		return preco;
+		return valorTotal;
 	}
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+	public void setPreco(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 }
