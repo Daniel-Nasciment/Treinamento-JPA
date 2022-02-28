@@ -20,36 +20,30 @@ public class ProdutoDAO {
 		this.em.persist(produto);
 
 	}
-	
+
 	public Produto buscaPorId(Long id) {
 		return em.find(Produto.class, id);
 	}
-	
-	public List<Produto> buscaTodos(){
+
+	public List<Produto> buscaTodos() {
 		// DEVO COLOCAR O NOME DA CLASSE, NÃO O NOME DA TABELA
 		String jpql = "select p from Produto p";
-		return em.createQuery(jpql , Produto.class).getResultList();
+		return em.createQuery(jpql, Produto.class).getResultList();
 	}
-	
-	public List<Produto> buscaPorNome(String nome){
+
+	public List<Produto> buscaPorNome(String nome) {
 		String jpql = "select p from Produto p where p.nome = :nome";
-		return em.createQuery(jpql , Produto.class)
-				.setParameter("nome", nome)
-				.getResultList();
+		return em.createQuery(jpql, Produto.class).setParameter("nome", nome).getResultList();
 	}
-	
-	public List<Produto> buscaPorNomeCategoria(String nome){
+
+	public List<Produto> buscaPorNomeCategoria(String nome) {
 		String jpql = "select p from Produto p where p.categoria.nome = :nome";
-		return em.createQuery(jpql , Produto.class)
-				.setParameter("nome", nome)
-				.getResultList();
+		return em.createQuery(jpql, Produto.class).setParameter("nome", nome).getResultList();
 	}
-	
+
 	public BigDecimal buscaPrecoPeloNome(String nome) {
 		String jpql = "select p.preco from Produto p where p.nome = :nome";
-		return em.createQuery(jpql , BigDecimal.class)
-				.setParameter("nome", nome)
-				.getSingleResult();
+		return em.createQuery(jpql, BigDecimal.class).setParameter("nome", nome).getSingleResult();
 	}
 
 }
