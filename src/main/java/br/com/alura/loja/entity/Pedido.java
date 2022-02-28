@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,27 +28,34 @@ public class Pedido {
 	@ManyToOne
 	private Cliente cliente;
 
+	// COM A TABELA CRIADA NÃO ADIANTA TENTAR TROCAR O NOME DA COLUNA PQ NÃO FUNCIONA
+	// DEVE OCORRER NO MOMENTO DA CRIAÇÃO DA TABELA
+	//@Column(name = "valor_total")
 	private BigDecimal valorTotal;
 
-	@OneToMany(mappedBy = "pedido")
+	// NO CASO DE item_pedido, É DEPENDENTE DE pedido
+	// ENTÃO, USANDO CASCADE TUDO QUE ACONTECER COM PEDIDO VAI ACONTECER COM
+	// ITEM_PEDIDO TAMBEM
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itens = new ArrayList<ItemPedido>();
-	
+
 	@Deprecated
 	public Pedido() {
-		
-	}
-	
-	public Pedido(Cliente cliente, BigDecimal valorTotal) {
-		this.cliente = cliente;
-		this.valorTotal = valorTotal;
+
 	}
 
-	// LEMBRAR SEMPRE NO RELACIONAMENTO BIDIRECIONAL DE FAZER AS ENTIDADES SE CONHECEREM
+	public Pedido(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	// LEMBRAR SEMPRE NO RELACIONAMENTO BIDIRECIONAL DE FAZER AS ENTIDADES SE
+	// CONHECEREM
 	public void adicionaItem(ItemPedido item) {
 		item.setPedido(this);
 		this.itens.add(item);
+		this.valorTotal = new BigDecimal(item.getQuantidade()).multiply(item.getValorUnitario());
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
