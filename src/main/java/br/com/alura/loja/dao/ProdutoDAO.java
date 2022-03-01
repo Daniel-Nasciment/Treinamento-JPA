@@ -46,4 +46,13 @@ public class ProdutoDAO {
 		return em.createQuery(jpql, BigDecimal.class).setParameter("nome", nome).getSingleResult();
 	}
 
+	public Produto buscarPorIdCarregandoCliente(Long id) {
+
+		// COMO O RELACIONAMENTO COM CLIENTE FOI ALTERADO PARA CARREGAMENTO LAZI
+		// PARA PREVINIR EXCEPTION CASO O ENTITY MANAGER ESTEJA FECHADO
+		// É BOA PRATICA UTILIZAR QUERYS PLANEJADAS COM JOIN FETCH
+		String jpql = "SELECT p FROM Produto p JOIN FETCH p.categoria WHERE p.id = :id";
+		return em.createQuery(jpql, Produto.class).setParameter("id", id).getSingleResult();
+	}
+
 }
