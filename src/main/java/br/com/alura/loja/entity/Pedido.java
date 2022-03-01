@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,11 @@ public class Pedido {
 
 	private LocalDate data = LocalDate.now();
 
-	@ManyToOne
+	
+	// POR PADRÃO OS RELACIONAMENTOS "ToOne" SÃO EAGER E ISSO PODE GERAR PROBLEMA DE PERFORMANCE NAS CONSULTAS
+	// OS RELACIONAMENTOS "ToMany" SÃO LAZI POR PADRÃO
+	// UMA BOA PRATICA É ALTERAR RELACIONAMENTOS TOONE PARA "LAZE"
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 
 	// CASO A ANOTAÇÃO @Column SEJA CRIADA DEPOIS DA CRIAÇÃO DA TABELA, NO MOMENTO
