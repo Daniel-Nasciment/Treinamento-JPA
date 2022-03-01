@@ -18,7 +18,7 @@ public class ItemPedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	//@Column(name = "valor_unitario")
+	@Column(name = "valor_unitario")
 	private BigDecimal valorUnitario;
 
 	private int quantidade;
