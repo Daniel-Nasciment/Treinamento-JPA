@@ -28,9 +28,9 @@ public class Pedido {
 	@ManyToOne
 	private Cliente cliente;
 
-	// COM A TABELA CRIADA NÃO ADIANTA TENTAR TROCAR O NOME DA COLUNA PQ NÃO FUNCIONA
-	// DEVE OCORRER NO MOMENTO DA CRIAÇÃO DA TABELA
-	//@Column(name = "valor_total")
+	// CASO A ANOTAÇÃO @Column SEJA CRIADA DEPOIS DA CRIAÇÃO DA TABELA, NO MOMENTO
+	// DE EXECUÇÃO SERA CRIADA UMA NOVA COLUNA NA TABELAS
+	@Column(name = "valor_total")
 	private BigDecimal valorTotal;
 
 	// NO CASO DE item_pedido, É DEPENDENTE DE pedido
