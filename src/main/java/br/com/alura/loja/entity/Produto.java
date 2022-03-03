@@ -4,15 +4,26 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Produto {
+
+	// strategy = InheritanceType.JOINED -> VANTAGEN - ORGANIZAÇÃO POIS SEPARA AS
+	// HERANÇAS EM TABELAS DISTINTAS
+	
+	// strategy = InheritanceType.SINGLE_TABLE -> VANTAGEM = PERFORMANCE POIS MANTEM
+	// TUDO EM UMA UNICA TABELA, TAMBÉM GERA UM CAMPO DTYPE PARA IDENTIFICAR SE A
+	// INSTANCIA É UMA DAS CLASSES HERADADAS
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,11 +37,9 @@ public class Produto {
 
 	private LocalDate data = LocalDate.now();
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Categoria categoria;
 
-	// CONSTRUTOR PADRÃO É NECESSÁRIO PARA USO DA JPA
-	@Deprecated
 	public Produto() {
 
 	}

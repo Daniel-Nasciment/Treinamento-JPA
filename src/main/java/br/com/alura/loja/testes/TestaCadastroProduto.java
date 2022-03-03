@@ -37,15 +37,15 @@ public class TestaCadastroProduto {
 	}
 
 	public void cadastraProduto(EntityManager em) {
-		Categoria celulares = new Categoria("Celulares");
-		Produto iPhone = new Produto("iPhone XS", "64GB preto", new BigDecimal("1400"), celulares);
+		Categoria videoGame = new Categoria("Video Games", "GAMES");
+		Produto ps5 = new Produto("ps5", "1TB", new BigDecimal("5000"), videoGame);
 
 		ProdutoDAO prodDao = new ProdutoDAO(em);
 		CategoriaDAO catDao = new CategoriaDAO(em);
 		em.getTransaction().begin();
 
-		catDao.salvar(celulares);
-		prodDao.salvar(iPhone);
+		catDao.salvar(videoGame);
+		prodDao.salvar(ps5);
 
 		// EXISTE O MÉTODO FLUSH QUE SINCRONIZA A ENTIDADE COM A BASE DE DADOS SEM
 		// COMMITAR A TRANSAÇÃO
