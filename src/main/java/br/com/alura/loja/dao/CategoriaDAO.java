@@ -3,6 +3,7 @@ package br.com.alura.loja.dao;
 import javax.persistence.EntityManager;
 
 import br.com.alura.loja.entity.Categoria;
+import br.com.alura.loja.entity.CategoriaId;
 
 public class CategoriaDAO {
 
@@ -16,6 +17,11 @@ public class CategoriaDAO {
 
 		this.em.persist(categoria);
 
+	}
+
+	public Categoria buscaComChaveComposta(String nome, String tipo) {
+
+		return em.find(Categoria.class, new CategoriaId(nome, tipo));
 	}
 
 }

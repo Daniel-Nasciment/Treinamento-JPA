@@ -40,8 +40,6 @@ public class Produto {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Categoria categoria;
 
-	// CONSTRUTOR PADRÃO É NECESSÁRIO PARA USO DA JPA
-	@Deprecated
 	public Produto() {
 
 	}

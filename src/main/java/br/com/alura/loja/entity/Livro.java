@@ -1,11 +1,14 @@
 package br.com.alura.loja.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "livros")
-public class Livro extends Produto {
+public class Livro extends Produto implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String autor;
 	private String titulo;
