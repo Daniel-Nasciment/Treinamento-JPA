@@ -18,4 +18,11 @@ public class ClienteDAO {
 
 	}
 
+	public Cliente buscarPorId(Long id) {
+
+		String jpql = "SELECT c FROM Cliente c WHERE c.id = :id";
+
+		return em.createQuery(jpql, Cliente.class).setParameter("id", id).getSingleResult();
+	}
+
 }
